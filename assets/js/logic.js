@@ -13,6 +13,8 @@ var startBtn = document.getElementById('start');
 var initialsEl = document.getElementById('initials');
 var feedbackEl = document.getElementById('feedback');
 
+// score value
+var score = localStorage.getItem("score");
 
 function startQuiz() {
   // hide start screen
@@ -23,7 +25,7 @@ function startQuiz() {
   questionsEl.removeAttribute('class', 'hide');
 
   // start timer
-  timerId = setInterval(clockTick(), 1000);
+  timerId = setInterval(clockTick, 1000);
 
   // show starting time
   timerEl.textContent = time;
@@ -36,24 +38,24 @@ function getQuestion() {
   var currentQuestion = questions[currentQuestionIndex];
 
   // update title with current question
-  var titleEl = document.getElementById('');
-  titleEl.textContent = ; //think dot notation
+  var titleEl = document.getElementById('question-title');
+  titleEl.textContent = currentQuestion.title; //think dot notation
 
   // clear out any old question choices
   choicesEl.innerHTML = '';
 
   // loop over choices
-  for (var i = 0; i < ; i++) {
+  for (var i = 0; i < 4; i++) {
     // create new button for each choice
     var choice = currentQuestion.choices[i];
-    var choiceNode = document.createElement('');
+    var choiceNode = document.createElement('button');
     choiceNode.setAttribute('class', 'choice');
     choiceNode.setAttribute('value', choice);
 
     choiceNode.textContent = i + 1 + '. ' + choice;
 
     // display on the page
-    choicesEl.appendChild();
+    choicesEl.appendChild(choiceNode);
   }
 }
 
@@ -66,40 +68,47 @@ function questionClick(event) {
   }
 
   // check if user guessed wrong
-  if () {
+  if (buttonEl.matches(questions.answer)) {
 
-
-
-    // penalize time
-    
-  
-   
-
-    // display new time on page
-   
-
-  // flash right/wrong feedback on page for half a second
+    score+5;
+    feedbackEl.textContent = "Right!";
+    // flash right/wrong feedback on page for half a second
+    feedbackEl.removeAttribute('class','hide');
+    setTimeout(() => {
+      feedbackEl.setAttribute('class', 'hide');
+    }, 500);
+  } else {
+    time-10;
+    timerEl.textContent = time;
+    feedbackEl.textContent = "Wrong";
+    // flash right/wrong feedback on page for half a second
+    feedbackEl.removeAttribute('class','hide');
+    setTimeout(() => {
+      feedbackEl.setAttribute('class', 'hide');
+    }, 500);
+  }
  
 
   // move to next question
   
 
   // check if we've run out of questions or if time ran out?
-  if () {
+  if (currentQuestionIndex > 4 || time <= 0) {
 
-    //if it did ???
+    quizEnd();
 
   } else {
     
-    // if it didnt??
+    currentQuestionIndex++;
+    getQuestion();
   }
 }
 
 function quizEnd() {
   // stop timer
- 
+  clearInterval(timerId);
   // show end screen
-  var endScreenEl = document.getElementById('');
+  var endScreenEl = document.getElementById('end-screen');
   endScreenEl.removeAttribute('class');
 
   // show final score
