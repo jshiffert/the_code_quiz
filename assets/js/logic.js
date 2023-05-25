@@ -14,7 +14,7 @@ var initialsEl = document.getElementById('initials');
 var feedbackEl = document.getElementById('feedback');
 
 // score value
-var score = localStorage.getItem("score");
+var score = 0;
 
 function startQuiz() {
   // hide start screen
@@ -68,9 +68,9 @@ function questionClick(event) {
   }
 
   // check if user guessed wrong
-  if (buttonEl.matches(questions.answer)) {
-
-    score+5;
+  if (buttonEl.value == questions[currentQuestionIndex].answer) {
+    console.log(buttonEl.value);
+    score += 5;
     feedbackEl.textContent = "Right!";
     // flash right/wrong feedback on page for half a second
     feedbackEl.removeAttribute('class','hide');
@@ -78,7 +78,8 @@ function questionClick(event) {
       feedbackEl.setAttribute('class', 'hide');
     }, 500);
   } else {
-    time-10;
+    time -= 10;
+    score -=1;
     timerEl.textContent = time;
     feedbackEl.textContent = "Wrong";
     // flash right/wrong feedback on page for half a second
@@ -90,7 +91,8 @@ function questionClick(event) {
  
 
   // move to next question
-  
+  currentQuestionIndex++;
+  console.log(currentQuestionIndex);
 
   // check if we've run out of questions or if time ran out?
   if (currentQuestionIndex > 4 || time <= 0) {
@@ -99,7 +101,6 @@ function questionClick(event) {
 
   } else {
     
-    currentQuestionIndex++;
     getQuestion();
   }
 }
@@ -112,10 +113,11 @@ function quizEnd() {
   endScreenEl.removeAttribute('class');
 
   // show final score
-  var finalScoreEl = document.getElementById('');
-  finalScoreEl.textContent = time;
+  var finalScoreEl = document.getElementById('final-score');
+  finalScoreEl.textContent = score;
 
   // hide questions section
+  questionsEl.setAttribute('class','hide');
 }
 
 function clockTick() {
@@ -134,9 +136,9 @@ function saveHighscore() {
   var initials = initialsEl.value.trim();
 
   // make sure value wasn't empty
-  if () {
+  if (initialsEl.value !== "") {
 
-    // get saved scores from localstorage, or if not any, set to empty array
+    localStorage.setItem("score",score);
     
     var highscores =
       JSON.parse() /* what would go inside the PARSE??*/ || [];
