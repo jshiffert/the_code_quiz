@@ -13,8 +13,6 @@ var startBtn = document.getElementById('start');
 var initialsEl = document.getElementById('initials');
 var feedbackEl = document.getElementById('feedback');
 
-// score value
-var score = 0;
 
 function startQuiz() {
   // hide start screen
@@ -70,7 +68,6 @@ function questionClick(event) {
   // check if user guessed wrong
   if (buttonEl.value == questions[currentQuestionIndex].answer) {
     console.log(buttonEl.value);
-    score += 5;
     feedbackEl.textContent = "Right!";
     // flash right/wrong feedback on page for half a second
     feedbackEl.removeAttribute('class','hide');
@@ -79,7 +76,6 @@ function questionClick(event) {
     }, 500);
   } else {
     time -= 10;
-    score -=1;
     timerEl.textContent = time;
     feedbackEl.textContent = "Wrong";
     // flash right/wrong feedback on page for half a second
@@ -114,7 +110,7 @@ function quizEnd() {
 
   // show final score
   var finalScoreEl = document.getElementById('final-score');
-  finalScoreEl.textContent = score;
+  finalScoreEl.textContent = time;
 
   // hide questions section
   questionsEl.setAttribute('class','hide');
@@ -137,11 +133,9 @@ function saveHighscore() {
 
   // make sure value wasn't empty
   if (initialsEl.value !== "") {
-
-    localStorage.setItem("score",score);
     
-    var highscores =
-      JSON.parse() /* what would go inside the PARSE??*/ || [];
+    var highscores = JSON.parse(localStorage.getItem("scores"))  || [];
+
 
     // format new score object for current user
     var newScore = {
@@ -151,10 +145,10 @@ function saveHighscore() {
 
     // save to localstorage
     highscores.push(newScore);
-    window.localStorage.setItem('highscores', JSON.stringify(/* What would we put inside STRINGIFY? */));
+    window.localStorage.setItem('highscores', JSON.stringify(highscores));
 
     // redirect to next page
-    window.location.href = '';
+    window.location.href = 'highscores.html';
   }
 }
 
