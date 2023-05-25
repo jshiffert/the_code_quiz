@@ -1,28 +1,28 @@
 // list of all questions, choices, and answers
 var questions = [
   {
-    title: 'Test Question 1',
-    choices: ['placeholder 1', 'placeholder 2', 'placeholder 3', 'placeholder 4'],
-    answer: 'placeholder 1',
+    title: 'What does Java stand for in JavaScript? ',
+    choices: ['just a valliant attempt', 'jackson always vanquishes aggressors', 'jump around, vump around', 'nothing'],
+    answer: 'nothing',
   },
   {
-    title: 'Test Question 2',
-    choices: ['placeholder 1', 'placeholder 2', 'placeholder 3', 'placeholder 4'],
-    answer: 'placeholder 2',
+    title: 'Why isnt it cheating to use stackexchange at work?',
+    choices: ['nobody cares', 'everyone else uses it', 'this isnt school', 'all of the above'],
+    answer: 'all of the above',
   },
   {
-    title: 'Test Question 3',
-    choices: ['placeholder 1', 'placeholder 2', 'placeholder 3', 'placeholder 4'],
-    answer: 'placeholder 3',
+    title: 'Which data type can only have one of two values?',
+    choices: ['boolean', 'string', 'integer', 'link'],
+    answer: 'boolean',
   },
   {
-    title: 'Test Question 4',
-    choices: ['placeholder 1', 'placeholder 2', 'placeholder 3', 'placeholder 4'],
-    answer: 'placeholder 4',
+    title: 'Which file type is necessary for every web page?',
+    choices: ['xls', 'doc', 'html', 'py'],
+    answer: 'html',
   },
   {
-    title: 'Test Question 5',
-    choices: ['placeholder 1', 'placeholder 2', 'placeholder 3', 'placeholder 4'],
-    answer: 'placeholder 4',
+    title: 'Did I finish this challenge?',
+    choices: ['yes', 'no', 'maybe'],
+    answer: 'yes',
   },
 ];
