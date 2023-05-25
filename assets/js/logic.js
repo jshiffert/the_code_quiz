@@ -134,7 +134,7 @@ function saveHighscore() {
   // make sure value wasn't empty
   if (initialsEl.value !== "") {
     
-    var highscores = JSON.parse(localStorage.getItem("scores"))  || [];
+    var highscores = JSON.parse(localStorage.getItem("highscores"))  || [];
 
 
     // format new score object for current user
